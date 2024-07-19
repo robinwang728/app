@@ -1,0 +1,32 @@
+$root-block-name: '.addUser';
+
+#{$root-block-name} {
+  width: 100%;
+  @include flex(null, null, column);
+  &__title {
+    @include flex;
+    color: #f079b5;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+
+  &__text {
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: #f079b5;
+  }
+  &__main {
+    padding: 24px;
+    flex: 1;
+  }
+
+  &__btns {
+    padding: 0 24px;
+    @include flex(center, end);
+  }
+
+  &__btn {
+    background: #f079b5;
+  }
+}
