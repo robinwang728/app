@@ -3,9 +3,9 @@ import Header from '@/components/Header/Header';
 import Card from '@/components/MCard';
 import ProductCard from '@/components/ProductCard'; // Ensure this path is correct
 import pImg from '@/assets/image/p.png';
+import bg from '@/assets/image/bg1.jpeg';
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
 const products1 = [
   {
     imagePath: pImg,
@@ -146,18 +146,59 @@ const products3 = [
     customClass: 'productCard--style2',
   },
 ];
+
+function NextArrow(props: any) {
+  const { style, onClick } = props;
+  return (
+    <div
+      className={` slider__btn slider__btn--next`}
+      style={{ ...style }}
+      onClick={onClick}
+    >
+      <FaAngleRight />
+    </div>
+  );
+}
+
+const PrevArrow = (props: any) => {
+  const { style, onClick } = props;
+  return (
+    <div
+      className={`slider__btn slider__btn--prev`}
+      style={{ ...style }}
+      onClick={onClick}
+    >
+      <FaAngleLeft />
+    </div>
+  );
+};
+
 const settings = {
-  className: 'center',
-  centerMode: true,
   infinite: true,
-  centerPadding: '60px',
-  slidesToShow: 3,
-  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  centerMode: true,
+  centerPadding: '25%',
+  nextArrow: <NextArrow />,
+  prevArrow: <PrevArrow />,
 };
 
 const MainPage = () => {
   return (
     <>
+      <div className="slider">
+        <Slider {...settings}>
+          {[...Array(7)].map((_, index) => (
+            <div key={index} className="slider__item">
+              <img
+                src={bg}
+                className="slider__item-img"
+                alt={`Slide ${index + 1}`}
+              />
+            </div>
+          ))}
+        </Slider>
+      </div>
       <div className="mainpage">
         <Card
           title="一番賞"
