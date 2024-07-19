@@ -4,8 +4,12 @@ import Card from '@/components/MCard';
 import ProductCard from '@/components/ProductCard'; // Ensure this path is correct
 import pImg from '@/assets/image/p.png';
 import bg from '@/assets/image/bg1.jpeg';
-import Slider from 'react-slick';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Pagination, Navigation } from 'swiper/modules';
 import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
+
 const products1 = [
   {
     imagePath: pImg,
@@ -173,31 +177,30 @@ const PrevArrow = (props: any) => {
   );
 };
 
-const settings = {
-  infinite: true,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  centerMode: true,
-  centerPadding: '25%',
-  nextArrow: <NextArrow />,
-  prevArrow: <PrevArrow />,
-};
-
 const MainPage = () => {
   return (
     <>
       <div className="slider">
-        <Slider {...settings}>
+        <Swiper
+          slidesPerView={'auto'}
+          centeredSlides={true}
+          spaceBetween={30}
+          navigation={true}
+          modules={[Navigation]}
+          className="mySwiper"
+        >
           {[...Array(7)].map((_, index) => (
-            <div key={index} className="slider__item">
-              <img
-                src={bg}
-                className="slider__item-img"
-                alt={`Slide ${index + 1}`}
-              />
-            </div>
+            <SwiperSlide>
+              <div key={index} className="slider__item">
+                <img
+                  src={bg}
+                  className="slider__item-img"
+                  alt={`Slide ${index + 1}`}
+                />
+              </div>
+            </SwiperSlide>
           ))}
-        </Slider>
+        </Swiper>
       </div>
       <div className="mainpage">
         <Card
